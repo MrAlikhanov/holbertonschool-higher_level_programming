@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 This module provides a function for text formatting.
 It handles newlines specifically for punctuation marks.
