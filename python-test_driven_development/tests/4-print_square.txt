@@ -1,0 +1,41 @@
+======================================
+Test suite for 4-print_square module
+======================================
+
+>>> print_square = __import__('4-print_square').print_square
+
+Testing a normal square:
+>>> print_square(2)
+##
+##
+
+Testing size 1:
+>>> print_square(1)
+#
+
+Testing size 0 (should print nothing):
+>>> print_square(0)
+
+Testing negative integer (ValueError):
+>>> print_square(-1)
+Traceback (most recent call last):
+    ...
+ValueError: size must be >= 0
+
+Testing negative float (TypeError per requirements):
+>>> print_square(-1.5)
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+
+Testing string input:
+>>> print_square("4")
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+
+Testing missing argument:
+>>> print_square()
+Traceback (most recent call last):
+    ...
+TypeError: print_square() missing 1 required positional argument: 'size'
