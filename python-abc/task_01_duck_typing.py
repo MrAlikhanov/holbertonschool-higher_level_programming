@@ -23,7 +23,7 @@ class Circle(Shape):
     """Circle shape implementation."""
 
     def __init__(self, radius):
-        self.radius = radius
+        self.radius = abs(radius)
 
     def area(self):
         return math.pi * (self.radius ** 2)
