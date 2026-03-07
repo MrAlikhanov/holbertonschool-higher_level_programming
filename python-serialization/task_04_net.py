@@ -26,3 +26,14 @@ def start_server():
 
             print("Received Dictionary from Client:")
             print(dictionary)
+
+def send_data(dictionary):
+    try:
+        serialized = json.dumps(dictionary).encode('utf-8')
+
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+            client_socket.connect((HOST, PORT))
+            client_socket.sendall(serialized)
+
+    except ConnectionRefusedError:
+        print("Error: Could not connect to the server.")
