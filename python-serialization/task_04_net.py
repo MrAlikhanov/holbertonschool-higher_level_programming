@@ -37,3 +37,6 @@ def send_data(dictionary):
 
     except ConnectionRefusedError:
         print("Error: Could not connect to the server.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
