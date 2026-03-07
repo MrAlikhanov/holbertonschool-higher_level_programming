@@ -27,6 +27,7 @@ def start_server():
             print("Received Dictionary from Client:")
             print(dictionary)
 
+
 def send_data(dictionary):
     try:
         serialized = json.dumps(dictionary).encode('utf-8')
@@ -39,4 +40,3 @@ def send_data(dictionary):
         print("Error: Could not connect to the server.")
     except Exception as e:
         print(f"An error occurred: {e}")
-
