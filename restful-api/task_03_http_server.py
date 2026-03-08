@@ -5,7 +5,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 
 class SimpleAPIHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-              if self.path == "/":
+            if self.path == "/":
             self._send_text_response(200, "Hello, this is a simple API!")
         elif self.path == "/data":
             data = {"name": "John", "age": 30, "city": "New York"}
