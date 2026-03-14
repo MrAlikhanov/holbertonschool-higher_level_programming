@@ -1,17 +1,21 @@
 #!/usr/bin/python3
 """
-Verilənlər bazasından ID-si 4 və daha böyük olan ştatları siyahılayır.
+Lists all states from the database hbtn_0e_0_usa.
+Ensures that all rows (e.g., up to 10 or more) are retrieved.
 """
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Arqumentləri əldə edirik
+    # Check if arguments are provided (Username, Password, DB Name)
+    if len(sys.argv) < 4:
+        exit(1)
+
     user = sys.argv[1]
     passwd = sys.argv[2]
     db_name = sys.argv[3]
 
-    # MySQL serverinə qoşuluruq
+    # Connect to MySQL server
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -22,16 +26,17 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
 
-    # SQL sorğusuna WHERE şərti əlavə edirik (məsələn, ID >= 4)
-    # Əgər konkret olaraq hansısa başqa şərt lazımdırsa, buranı dəyişə bilərsiniz.
-    query = "SELECT * FROM states WHERE id >= 4 ORDER BY id ASC"
-    
-    cursor.execute(query)
+    # The SQL query: 
+    # 1. No "LIMIT" clause so we get every row.
+    # 2. Ordered by ID so 1-10 appear in sequence.
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
+    # Fetching all results
     rows = cursor.fetchall()
 
     for row in rows:
         print(row)
 
+    # Close connections
     cursor.close()
     db.close()
