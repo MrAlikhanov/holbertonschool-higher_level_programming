@@ -7,33 +7,33 @@ import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Accessing command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
+    # Get arguments from the command line
+    user = sys.argv[1]
+    passwd = sys.argv[2]
     db_name = sys.argv[3]
 
-    # Connecting to the MySQL server
+    # Connect to the MySQL server
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
+        user=user,
+        passwd=passwd,
         db=db_name
     )
 
-    # Creating a cursor object to execute queries
+    # Create a cursor object to execute queries
     cursor = db.cursor()
 
-    # Executing the SQL query
+    # Execute the SQL query
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
-    # Fetching all the rows
+    # Fetch all rows from the last executed statement
     rows = cursor.fetchall()
 
-    # Displaying the results
+    # Print results in the specified format
     for row in rows:
         print(row)
 
-    # Closing the cursor and the database connection
+    # Clean up: Close cursor and database connection
     cursor.close()
     db.close()
