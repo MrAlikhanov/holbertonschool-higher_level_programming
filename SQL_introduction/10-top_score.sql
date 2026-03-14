@@ -1,15 +1,5 @@
--- Creates a table second_table in the database hbtn_0c_0.
--- If the table already exists, the script should not fail.
--- Adds multiple rows of data in one go.
-CREATE TABLE IF NOT EXISTS second_table (
-    id INT,
-    name VARCHAR(256),
-    score INT
-);
-
-INSERT INTO second_table (id, name, score)
-VALUES 
-    (1, "John", 10),
-    (2, "Alex", 3),
-    (3, "Bob", 14),
-    (4, "George", 8);
+-- Lists all records of the table second_table of the database hbtn_0c_0.
+-- Results should display both the score and the name (in this order).
+-- Records should be ordered by score (top first).
+-- The database name will be passed as an argument of the mysql command.
+SELECT score, name FROM second_table ORDER BY score DESC;
