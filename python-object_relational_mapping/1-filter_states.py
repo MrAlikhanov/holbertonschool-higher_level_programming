@@ -1,30 +1,26 @@
 #!/usr/bin/python3
-"""Lists all states with name starting with N from database hbtn_0e_0_usa"""
-import sys
+"""
+Lists all states with a name starting with N (upper N)
+from the database hbtn_0e_0_usa.
+"""
 import MySQLdb
-
+import sys
 
 if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    conn = MySQLdb.connect(
+    mysql_user = sys.argv[1]
+    mysql_password = sys.argv[2]
+    db_name = sys.argv[3]
+    db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database,
-        charset="utf8"
+        user=mysql_user,
+        passwd=mysql_password,
+        db=db_name
     )
-
-    cur = conn.cursor()
-    # Diqqət: LIKE-dan sonra BINARY əlavə etdik
-    cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
-    query_rows = cur.fetchall()
-
-    for row in query_rows:
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
+    rows = cursor.fetchall()
+    for row in rows:
         print(row)
-
-    cur.close()
-    conn.close()
+    cursor.close()
+    db.close()
